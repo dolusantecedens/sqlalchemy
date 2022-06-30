@@ -1,11 +1,11 @@
 import os, sys
-from sqlalchemy import Table, Column, Integer, String, MetaData, Date, Float
+from sqlalchemy import Table, Column, Integer, String, MetaData, Float
 from sqlalchemy import create_engine
 import csv
 import sqlite3
-engine = create_engine('sqlite:///database.db')
+engine = create_engine('sqlite:///database.db', echo=True)
 conn = engine.connect()
-
+print(engine.table_names())
 
 meta = MetaData()
 
@@ -87,5 +87,3 @@ ins=station.insert()
 inst=clean_measure.insert()
 conn.execute(ins,convertor_to_dict('clean_stations.csv'))
 conn.execute(inst,convertor_to_dict('clean_measure.csv'))
-
-
